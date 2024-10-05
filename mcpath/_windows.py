@@ -2,7 +2,7 @@
 
 import os
 
-__all__ = ["java", "bedrock", "preview", "education"]
+__all__ = ["java", "bedrock", "preview", "education", "prism"]
 
 from mcpath import JEPath, BEPath, PREPath, EDUPath
 
@@ -44,8 +44,18 @@ class WindowsEDUPath(EDUPath):
             "%localappdata%\\Packages\\Microsoft.MinecraftEducationEdition_8wekyb3d8bbwe\\LocalState\\games\\com.mojang"
         )
 
+class PrismLauncherWindows(PrismPath):
+    platform = "win32"
+    
+    @property
+    def root(self) -> str:
+        return os.path.expandvars(
+            "%localappdata%\\PrismLauncher\\instances"
+        )
+
 
 java = WindowsJEPath()
 bedrock = WindowsBEPath()
 preview = WindowsPREPath()
 education = WindowsEDUPath()
+prism = PrismLauncherWindows()
